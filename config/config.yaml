@@ -1,0 +1,88 @@
+# ==================== 全局开关 ====================
+modules:
+  rewriter:
+    mode: "auto"  # auto/local/cloud
+  tts:
+    mode: "cloud"  # local/cloud
+  digital_human:
+    mode: "cloud"  # local/cloud
+  video_processing:
+    mode: "local"  # local/cloud
+
+# ==================== 队列配置 ====================
+queue:
+  max_concurrency: 5
+  min_interval_seconds: 10
+  max_interval_seconds: 30
+  max_retries: 3
+
+# ==================== 本地服务 ====================
+local:
+  ffmpeg:
+    path: "ffmpeg"
+  whisper:
+    model_size: "base"
+
+# ==================== 云端API ====================
+cloud:
+  rewriter:
+    provider: "tongyi"
+    tongyi:
+      api_key: "${TONGYI_API_KEY}"
+      model: "qwen-max"
+    openai:
+      api_key: "${OPENAI_API_KEY}"
+      model: "gpt-4o"
+    claude:
+      api_key: "${CLAUDE_API_KEY}"
+      model: "claude-3-5-sonnet"
+    gemini:
+      api_key: "${GEMINI_API_KEY}"
+      model: "gemini-pro"
+    deepseek:
+      api_key: "${DEEPSEEK_API_KEY}"
+      model: "deepseek-chat"
+    doubao:
+      api_key: "${DOUBAO_API_KEY}"
+      model: "doubao-pro"
+
+  tts:
+    provider: "aliyun"
+    aliyun:
+      api_key: "${ALIYUN_TTS_API_KEY}"
+      region: "cn-shanghai"
+    volcengine:
+      api_key: "${VOLCENGINE_TTS_API_KEY}"
+
+  digital_human:
+    provider: "aliyun"
+    aliyun:
+      api_key: "${ALIYUN_DH_API_KEY}"
+      region: "cn-shanghai"
+    tencent:
+      api_key: "${TENCENT_DH_API_KEY}"
+
+  video:
+    provider: "tencent"
+    tencent:
+      api_key: "${TENCENT_VIDEO_API_KEY}"
+
+# ==================== 行业场景 ====================
+scenarios:
+  beauty:
+    name: "美妆教程"
+    templates:
+      - type: "种草安利"
+        prompt: "你是美妆达人，用亲切的语气改写以下文案，突出产品卖点..."
+      - type: "教程分享"
+        prompt: "你是美妆专家，用专业的语气改写以下教程文案..."
+  knowledge:
+    name: "知识付费"
+    templates:
+      - type: "干货分享"
+        prompt: "你是知识博主，用权威但易懂的语气改写..."
+  ecommerce:
+    name: "电商带货"
+    templates:
+      - type: "产品介绍"
+        prompt: "你是带货主播，用热情专业的语气改写..."

@@ -1,0 +1,25 @@
+{
+  "templates": [
+    {
+      "id": "tpl_beauty_grass",
+      "industry": "beauty",
+      "type": "种草安利",
+      "title": "美妆好物推荐",
+      "template": "姐妹们！今天给你们安利一款{product}，真的超好用！{feature}。用过之后{benefit}，我已经回购好几次了！"
+    },
+    {
+      "id": "tpl_knowledge_dry",
+      "industry": "knowledge",
+      "type": "干货分享",
+      "title": "{topic}知识点",
+      "template": "今天给大家分享一个知识点：{topic}。第一，{point1}。第二，{point2}。觉得有用的记得收藏！"
+    },
+    {
+      "id": "tpl_ecommerce_product",
+      "industry": "ecommerce",
+      "type": "产品介绍",
+      "title": "今日推荐",
+      "template": "家人们！今天给你们推荐一款{product}，现在下单{discount}，错过就没有了！{feature}，{benefit}。"
+    }
+  ]
+}

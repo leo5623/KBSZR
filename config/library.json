@@ -1,0 +1,22 @@
+{
+  "avatars": {
+    "provider": "aliyun",
+    "categories": ["综合", "女生", "男生", "民族风", "健身", "商务"],
+    "cache_dir": "./data/avatars",
+    "default_avatar": "avatar_001"
+  },
+  "backgrounds": {
+    "path": "./data/backgrounds",
+    "categories": ["演播室", "户外", "商品展示", "抽象", "节日"],
+    "default_background": "bg_studio_001"
+  },
+  "bgm": {
+    "path": "./data/bgm",
+    "categories": {
+      "ambient": "氛围类",
+      "pop": "流行类",
+      "upbeat": "活力类"
+    },
+    "default_volume": 0.3
+  }
+}

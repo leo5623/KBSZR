@@ -1,0 +1,34 @@
+{
+  "accounts": [
+    {
+      "id": "acc_default",
+      "name": "默认账号",
+      "persona": {
+        "avatar_id": "avatar_default",
+        "voice_id": "clone_voice_001",
+        "bgm_style": "pop",
+        "filter_style": "warm",
+        "default_ratio": "9:16"
+      },
+      "output_dir": "./data/output/default"
+    }
+  ],
+  "platforms": {
+    "douyin": {
+      "cookies": "",
+      "publish_enabled": false
+    },
+    "kuaishou": {
+      "cookies": "",
+      "publish_enabled": false
+    },
+    "xiaohongshu": {
+      "cookies": "",
+      "publish_enabled": false
+    },
+    "wechat_video": {
+      "cookies": "",
+      "publish_enabled": false
+    }
+  }
+}
