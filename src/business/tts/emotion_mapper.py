@@ -1,6 +1,6 @@
 """情绪分级 TTS - 情绪→TTS参数映射"""
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 from enum import Enum
 
 from loguru import logger
@@ -12,6 +12,10 @@ class TextEmotion(Enum):
     CALM = "calm"            # 平静 - 语速中等、音调平稳
     SERIOUS = "serious"      # 严肃 - 语速慢、音调低
     WARM = "warm"            # 温暖 - 语速中等、音调柔和
+
+
+# 别名，保持向后兼容
+EmotionType = TextEmotion
 
 
 @dataclass
@@ -124,7 +128,7 @@ class EmotionTTSMapper:
         self,
         text: str,
         voice_id: str = None
-    ) -> tuple[TextEmotion, TTSParams]:
+    ) -> Tuple[TextEmotion, TTSParams]:
         """
         分析文本情绪并映射 TTS 参数
 

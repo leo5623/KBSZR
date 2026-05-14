@@ -83,6 +83,7 @@ class BatchedDelayQueue:
         self._semaphore = asyncio.Semaphore(max_concurrency)
         self._workers: List[asyncio.Task] = []
         self._is_running = False
+        self._task_handler: Optional[Callable] = None
 
         logger.info(f"TaskQueue initialized: max_concurrency={max_concurrency}, "
                    f"interval={min_interval}-{max_interval}s, max_retries={max_retries}")
@@ -179,7 +180,9 @@ class BatchedDelayQueue:
 
                 # 判断是否需要重试
                 if task.retry_count < task.max_retries:
-                    task.status = TaskStatus.RETRYING
+                    task.status = TaskStatus.PENDING
+                    task.started_at = None
+                    task.completed_at = None
                     task.retry_count += 1
                     # 延时后重新加入队列（指数退避）
                     backoff = interval * (2 ** (task.retry_count - 1))

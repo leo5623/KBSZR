@@ -116,6 +116,10 @@ class FFmpegService:
             )
             stdout, stderr = await process.communicate()
 
+            logger.debug(f"FFmpeg command: {' '.join(cmd)}")
+            if process.returncode != 0:
+                logger.error(f"FFmpeg failed with code {process.returncode}: {stderr.decode() if stderr else 'unknown error'}")
+
             if process.returncode == 0 and Path(output_path).exists():
                 duration = await self.get_duration(output_path)
                 logger.info(f"Merge success: {output_path}, duration={duration}s")
@@ -165,6 +169,10 @@ class FFmpegService:
             )
             stdout, stderr = await process.communicate()
 
+            logger.debug(f"FFmpeg command: {' '.join(cmd)}")
+            if process.returncode != 0:
+                logger.error(f"FFmpeg failed with code {process.returncode}: {stderr.decode() if stderr else 'unknown error'}")
+
             if process.returncode == 0 and Path(output_path).exists():
                 duration = await self.get_duration(output_path)
                 logger.info(f"Add subtitle success: {output_path}")
@@ -200,6 +208,10 @@ class FFmpegService:
                 stderr=asyncio.subprocess.PIPE
             )
             stdout, stderr = await process.communicate()
+
+            logger.debug(f"FFmpeg command: {' '.join(cmd)}")
+            if process.returncode != 0:
+                logger.error(f"FFmpeg failed with code {process.returncode}: {stderr.decode() if stderr else 'unknown error'}")
 
             if process.returncode == 0 and Path(output_path).exists():
                 duration = await self.get_duration(output_path)
@@ -255,6 +267,10 @@ class FFmpegService:
             )
             stdout, stderr = await process.communicate()
 
+            logger.debug(f"FFmpeg command: {' '.join(cmd)}")
+            if process.returncode != 0:
+                logger.error(f"FFmpeg failed with code {process.returncode}: {stderr.decode() if stderr else 'unknown error'}")
+
             if process.returncode == 0 and Path(output_path).exists():
                 duration = await self.get_duration(output_path)
                 logger.info(f"Convert ratio success: {target_ratio}")
@@ -298,6 +314,10 @@ class FFmpegService:
                 stderr=asyncio.subprocess.PIPE
             )
             stdout, stderr = await process.communicate()
+
+            logger.debug(f"FFmpeg command: {' '.join(cmd)}")
+            if process.returncode != 0:
+                logger.error(f"FFmpeg failed with code {process.returncode}: {stderr.decode() if stderr else 'unknown error'}")
 
             if process.returncode == 0 and Path(output_path).exists():
                 duration = await self.get_duration(output_path)
@@ -351,6 +371,10 @@ class FFmpegService:
             )
             stdout, stderr = await process.communicate()
 
+            logger.debug(f"FFmpeg command: {' '.join(cmd)}")
+            if process.returncode != 0:
+                logger.error(f"FFmpeg failed with code {process.returncode}: {stderr.decode() if stderr else 'unknown error'}")
+
             if process.returncode == 0 and Path(output_path).exists():
                 duration = await self.get_duration(output_path)
                 logger.info(f"Mix BGM success: bgm_volume={bgm_volume}")
@@ -395,6 +419,10 @@ class FFmpegService:
                 stderr=asyncio.subprocess.PIPE
             )
             stdout, stderr = await process.communicate()
+
+            logger.debug(f"FFmpeg command: {' '.join(cmd)}")
+            if process.returncode != 0:
+                logger.error(f"FFmpeg failed with code {process.returncode}: {stderr.decode() if stderr else 'unknown error'}")
 
             if process.returncode == 0 and Path(output_path).exists():
                 duration = await self.get_duration(output_path)
@@ -443,6 +471,10 @@ class FFmpegService:
                 stderr=asyncio.subprocess.PIPE
             )
             stdout, stderr = await process.communicate()
+
+            logger.debug(f"FFmpeg command: {' '.join(cmd)}")
+            if process.returncode != 0:
+                logger.error(f"FFmpeg failed with code {process.returncode}: {stderr.decode() if stderr else 'unknown error'}")
 
             if process.returncode == 0 and Path(output_path).exists():
                 duration = await self.get_duration(output_path)

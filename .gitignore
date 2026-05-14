@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Project specific
+data/
+logs/
+*.log
+.pytest_cache/
+htmlcov/
+.coverage
+*.db
+*.sqlite
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vendors (if large binary files)
+vendors/voicebox/Voicebox/*.exe
+vendors/voicebox/Voicebox/*.dll
+
+# Environment (secrets)
+.env
+
+# Temporary files
+*.tmp
+*.bak
+=4.0.0

@@ -1,9 +1,11 @@
 # Web UI
+gradio>=4.0.0
 PyQt6>=6.6.0
 
 # 异步
 aiohttp>=3.9.0
 asyncio>=3.4.3
+httpx>=0.25.0
 
 # 配置
 PyYAML>=6.0.1
@@ -11,8 +13,11 @@ python-dotenv>=1.0.0
 
 # 本地服务
 ffmpeg-python>=0.2.0
-whisper>=1.0.0
-ffmpeg-python>=0.2.0
+openai-whisper>=2024.0.0
+faster-whisper>=1.0.0
+yt-dlp>=2024.0.0
+opencc-python-reimplemented>=0.1.7
+librosa>=0.10.0
 
 # 浏览器自动化
 playwright>=1.40.0
@@ -22,6 +27,10 @@ aiosqlite>=0.19.0
 
 # 日志
 loguru>=0.7.2
+
+# 测试
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
 
 # 其他工具
 pillow>=10.1.0

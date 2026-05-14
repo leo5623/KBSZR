@@ -8,6 +8,13 @@ from PyQt6.QtCore import Qt
 from loguru import logger
 
 
+def _get_data_dir() -> Path:
+    """获取数据目录（项目根目录下的data文件夹）"""
+    # 获取项目根目录（src/ui/dialogs.py -> 项目根目录）
+    project_root = Path(__file__).parent.parent.parent
+    return project_root / "data"
+
+
 class MaterialDialog(QDialog):
     """素材库窗口"""
 
@@ -26,7 +33,8 @@ class MaterialDialog(QDialog):
         avatar_layout = QVBoxLayout(avatar_tab)
         avatar_list = QListWidget()
         avatar_list.setStyleSheet("QListWidget{background:#1a1a1a;color:#ccc;border:1px solid #333;border-radius:4px;padding:5px;}")
-        for f in sorted(Path("./data/avatars").iterdir()) if Path("./data/avatars").exists() else []:
+        avatars_dir = _get_data_dir() / "avatars"
+        for f in sorted(avatars_dir.iterdir()) if avatars_dir.exists() else []:
             avatar_list.addItem(f.name)
         if avatar_list.count() == 0:
             avatar_list.addItem("（暂无素材，请导入）")
@@ -38,7 +46,8 @@ class MaterialDialog(QDialog):
         bg_layout = QVBoxLayout(bg_tab)
         bg_list = QListWidget()
         bg_list.setStyleSheet("QListWidget{background:#1a1a1a;color:#ccc;border:1px solid #333;border-radius:4px;padding:5px;}")
-        for f in sorted(Path("./data/backgrounds").iterdir()) if Path("./data/backgrounds").exists() else []:
+        backgrounds_dir = _get_data_dir() / "backgrounds"
+        for f in sorted(backgrounds_dir.iterdir()) if backgrounds_dir.exists() else []:
             bg_list.addItem(f.name)
         if bg_list.count() == 0:
             bg_list.addItem("（暂无素材，请导入）")
@@ -50,7 +59,8 @@ class MaterialDialog(QDialog):
         bgm_layout = QVBoxLayout(bgm_tab)
         bgm_list = QListWidget()
         bgm_list.setStyleSheet("QListWidget{background:#1a1a1a;color:#ccc;border:1px solid #333;border-radius:4px;padding:5px;}")
-        for f in sorted(Path("./data/bgm").iterdir()) if Path("./data/bgm").exists() else []:
+        bgm_dir = _get_data_dir() / "bgm"
+        for f in sorted(bgm_dir.iterdir()) if bgm_dir.exists() else []:
             bgm_list.addItem(f.name)
         if bgm_list.count() == 0:
             bgm_list.addItem("（暂无素材，请导入）")
@@ -132,7 +142,7 @@ class WorksDialog(QDialog):
 
         output_list = QListWidget()
         output_list.setStyleSheet("QListWidget{background:#1a1a1a;color:#ccc;border:1px solid #333;border-radius:4px;padding:5px;}")
-        output_dir = Path("./data/output")
+        output_dir = _get_data_dir() / "output"
         if output_dir.exists():
             for f in sorted(output_dir.iterdir()):
                 size = f.stat().st_size

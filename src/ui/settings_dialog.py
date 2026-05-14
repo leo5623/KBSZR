@@ -67,7 +67,10 @@ class SettingsDialog(QDialog):
         api_group_layout = QFormLayout(api_group)
 
         self.provider_select = QComboBox()
-        self.provider_select.addItems(["tongyi", "openai", "claude", "deepseek", "doubao"])
+        self.provider_select.addItems([
+            "tongyi", "qwen-turbo", "openai", "claude", "deepseek",
+            "doubao", "wenxin", "hunyuan", "spark", "minimax"
+        ])
         api_group_layout.addRow("默认供应商:", self.provider_select)
 
         self.tongyi_key = QLineEdit()
@@ -109,6 +112,38 @@ class SettingsDialog(QDialog):
 
         self.doubao_model = QLineEdit("doubao-pro")
         api_group_layout.addRow("Doubao 模型:", self.doubao_model)
+
+        self.wenxin_key = QLineEdit()
+        self.wenxin_key.setEchoMode(QLineEdit.EchoMode.Password)
+        self.wenxin_key.setPlaceholderText("文心一言 API Key")
+        api_group_layout.addRow("Wenxin Key:", self.wenxin_key)
+
+        self.wenxin_model = QLineEdit("ernie-4.0")
+        api_group_layout.addRow("Wenxin 模型:", self.wenxin_model)
+
+        self.hunyuan_key = QLineEdit()
+        self.hunyuan_key.setEchoMode(QLineEdit.EchoMode.Password)
+        self.hunyuan_key.setPlaceholderText("腾讯混元 API Key")
+        api_group_layout.addRow("Hunyuan Key:", self.hunyuan_key)
+
+        self.hunyuan_model = QLineEdit("hunyuan-latest")
+        api_group_layout.addRow("Hunyuan 模型:", self.hunyuan_model)
+
+        self.spark_key = QLineEdit()
+        self.spark_key.setEchoMode(QLineEdit.EchoMode.Password)
+        self.spark_key.setPlaceholderText("讯飞星火 API Key")
+        api_group_layout.addRow("Spark Key:", self.spark_key)
+
+        self.spark_model = QLineEdit("generalv3.5")
+        api_group_layout.addRow("Spark 模型:", self.spark_model)
+
+        self.minimax_key = QLineEdit()
+        self.minimax_key.setEchoMode(QLineEdit.EchoMode.Password)
+        self.minimax_key.setPlaceholderText("MiniMax API Key")
+        api_group_layout.addRow("MiniMax Key:", self.minimax_key)
+
+        self.minimax_model = QLineEdit("abab6-chat")
+        api_group_layout.addRow("MiniMax 模型:", self.minimax_model)
 
         form.addRow(api_group)
 
@@ -250,6 +285,14 @@ class SettingsDialog(QDialog):
         self.deepseek_model.setText(self._settings.value("api/deepseek_model", "deepseek-chat"))
         self.doubao_key.setText(self._settings.value("api/doubao_key", ""))
         self.doubao_model.setText(self._settings.value("api/doubao_model", "doubao-pro"))
+        self.wenxin_key.setText(self._settings.value("api/wenxin_key", ""))
+        self.wenxin_model.setText(self._settings.value("api/wenxin_model", "ernie-4.0"))
+        self.hunyuan_key.setText(self._settings.value("api/hunyuan_key", ""))
+        self.hunyuan_model.setText(self._settings.value("api/hunyuan_model", "hunyuan-latest"))
+        self.spark_key.setText(self._settings.value("api/spark_key", ""))
+        self.spark_model.setText(self._settings.value("api/spark_model", "generalv3.5"))
+        self.minimax_key.setText(self._settings.value("api/minimax_key", ""))
+        self.minimax_model.setText(self._settings.value("api/minimax_model", "abab6-chat"))
         self.tts_provider.setCurrentText(self._settings.value("tts/provider", "volcengine"))
         self.tts_key.setText(self._settings.value("api/tts_key", ""))
         self.dh_provider.setCurrentText(self._settings.value("dh/provider", "aliyun"))
@@ -288,6 +331,14 @@ class SettingsDialog(QDialog):
             self._settings.setValue("api/deepseek_model", self.deepseek_model.text())
             self._settings.setValue("api/doubao_key", self.doubao_key.text())
             self._settings.setValue("api/doubao_model", self.doubao_model.text())
+            self._settings.setValue("api/wenxin_key", self.wenxin_key.text())
+            self._settings.setValue("api/wenxin_model", self.wenxin_model.text())
+            self._settings.setValue("api/hunyuan_key", self.hunyuan_key.text())
+            self._settings.setValue("api/hunyuan_model", self.hunyuan_model.text())
+            self._settings.setValue("api/spark_key", self.spark_key.text())
+            self._settings.setValue("api/spark_model", self.spark_model.text())
+            self._settings.setValue("api/minimax_key", self.minimax_key.text())
+            self._settings.setValue("api/minimax_model", self.minimax_model.text())
             self._settings.setValue("tts/provider", self.tts_provider.currentText())
             self._settings.setValue("api/tts_key", self.tts_key.text())
             self._settings.setValue("dh/provider", self.dh_provider.currentText())

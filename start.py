@@ -9,7 +9,16 @@ if project_root not in sys.path:
 
 os.chdir(project_root)
 
-from src.ui.jixiang_main_window import main
+# 默认启动赛博朋克风格UI
+# 可选: "cyberpunk" (默认), "classic", 或 "web" (Gradio)
+UI_MODE = os.environ.get("KBSZR_UI", "cyberpunk")
+
+if UI_MODE == "cyberpunk":
+    from src.ui.cyberpunk.main_window import main
+elif UI_MODE == "web":
+    from src.web.app import main
+else:
+    from src.ui.jixiang_main_window import main
 
 if __name__ == "__main__":
     main()

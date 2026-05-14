@@ -189,6 +189,58 @@ class PlaywrightService:
             return await self._context.cookies()
         return []
 
+    async def qrcode_login(self, login_url: str, timeout: int = 120) -> Dict[str, Any]:
+        """
+        二维码登录，获取Cookie
+
+        Args:
+            login_url: 登录页面URL
+            timeout: 超时时间(秒)
+
+        Returns:
+            {"success": bool, "cookies": [], "error": str}
+        """
+        try:
+            await self.start()
+            page = await self._context.new_page()
+
+            logger.info(f"Opening QR code login: {login_url}")
+            await page.goto(login_url, wait_until="domcontentloaded", timeout=timeout * 1000)
+
+            # 等待二维码出现
+            await page.wait_for_timeout(2000)
+
+            # 等待用户扫码登录 - 检查是否跳转到已登录状态
+            # 抖音扫码成功后会跳转到主页面
+            max_wait = timeout
+            check_interval = 3
+            for _ in range(max_wait // check_interval):
+                await page.wait_for_timeout(check_interval * 1000)
+
+                # 检查当前URL是否还在登录页
+                current_url = page.url
+                if "login" not in current_url.lower():
+                    # 已登录，获取cookies
+                    cookies = await self._context.cookies()
+                    logger.info(f"QR code login success, got {len(cookies)} cookies")
+                    await page.close()
+                    return {
+                        "success": True,
+                        "cookies": cookies,
+                        "url": current_url
+                    }
+
+            await page.close()
+            return {
+                "success": False,
+                "error": "Login timeout, please scan QR code in time",
+                "cookies": []
+            }
+
+        except Exception as e:
+            logger.error(f"QR code login failed: {e}")
+            return {"success": False, "error": str(e), "cookies": []}
+
     @staticmethod
     async def install_browsers():
         """安装浏览器"""
